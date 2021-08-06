@@ -4,6 +4,8 @@ import {AiFillDelete,AiFillCreditCard} from "react-icons/ai"
 import app from '../base'
 import { Button, Input } from 'antd'
 import firebase from 'firebase'
+import Images from './Images'
+import { CropImage } from './CropImage'
 
 const HomeScreen = () => {
 const myStore = app.firestore().collection("task")
@@ -100,9 +102,10 @@ const onDelete = async(id) => {
         ) )
       }
     </Container>
+    
+    {/* <CropImage /> */}
     </Fragment>
-  )
-}
+  )}
 
 export default HomeScreen
 
