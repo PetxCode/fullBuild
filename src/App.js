@@ -7,6 +7,8 @@ import HeaderView from './components/HeaderView'
 import DetailPage from './components/DetailPage'
 import LetBuild from './test/LetBuild'
 import HomeScreen from './firebaseComponent/HomeScreen'
+import YouHome from './Youtube/YouHome'
+import YouPost from './Youtube/YouPost'
 
 const App = () => {
   return (
@@ -16,7 +18,9 @@ const App = () => {
       <Switch>
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/" component={HomeScreen} />
+        <Route exact path="/youtube" component={YouHome} />
         <Route exact path="/post" component={PostScreen} />
+        <Route exact path="/youPost" component={YouPost} />
         <Route exact path="/:id" component={DetailPage} />
       </Switch>
     </BrowserRouter>

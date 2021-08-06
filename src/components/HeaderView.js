@@ -10,6 +10,8 @@ const HeaderView = () => {
         <Wrapper>
           <Places to="/">Home</Places>
           <Places to="/post">Post</Places>
+          <Places to="/youtube">You Home</Places>
+          <Places to="/youPost">You Post</Places>
           {/* <Places to="/detail">Post</Places> */}
         </Wrapper>
       </Header>
