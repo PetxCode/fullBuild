@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import img from "./images/3.jpg" 
@@ -6,15 +6,37 @@ import img1 from "./images/44.jpg"
 import vid from "./videos/1.mp4" 
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import ReadMoreReact from 'read-more-react';
+import app from '../base';
 // import StringParser from 'react-simple-read-more';
 
+
+
 const YouHome = () => {
+
+  const [myFiles, setMyFiles] = useState([])
+
+  const getMyFiles = async() => {
+    await app.firestore().collection("youtube").onSnapshot((snapshot) => {
+      const item = []
+      snapshot.forEach(doc => {
+        item.push({...doc.data(), id: doc.id })
+      })
+      setMyFiles(item)
+    })
+  }
+
+  useEffect(() => {
+    getMyFiles()
+  }, [])
+
   return (
     <Container>
-      <Wrapper>
+    {
+      myFiles.map(({video,id, title, avatar, description, image, name, time, view}) => (
+        <Wrapper key={id} >
         <Media>
-          <Image src={img} />
-          <Video src={vid} 
+          <Image src={image} />
+          <Video src={video} 
           loop
           inputMode={true}
           autoPlay
@@ -22,7 +44,7 @@ const YouHome = () => {
           />
         </Media>
         <Content>
-          <ProfilePix src={img1}/>
+          <ProfilePix src={avatar}/>
           <ProfileContent>
             <TitleHeader>
               <Title>
@@ -31,7 +53,7 @@ const YouHome = () => {
               style={{
                 display: "flex"
               }}
-              text={"There are 3 important limits to know around response time. The ripple effect of the ButtonBase component"}
+              text={title}
                 min={50}
                 ideal={50}
                 max={50}
@@ -40,9 +62,9 @@ const YouHome = () => {
               <Icon />
             </TitleHeader>
             <DescriptionContainer>
-              <Description>description</Description>
+              <Description>{name}</Description>
               <DescriptionRow>
-                <Row>View</Row>
+                <Row>{view}</Row>
                 <Row>
                   <FiberManualRecordIcon />
                 </Row>
@@ -52,6 +74,8 @@ const YouHome = () => {
           </ProfileContent>
         </Content>
       </Wrapper>
+      ))
+    }
     </Container>
   )
 }
@@ -138,6 +162,7 @@ margin-top: 10px;
 align-items: center;
 `
 const Row = styled.div`
+margin-bottom: 20px;
 
   .MuiSvgIcon-root{
     font-size: 8px;
