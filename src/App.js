@@ -10,6 +10,7 @@ import HomeScreen from './firebaseComponent/HomeScreen'
 import YouHome from './Youtube/YouHome'
 import YouPost from './Youtube/YouPost'
 import MyPost from './Youtube/MyPost'
+import YouDetail from './Youtube/YouDetail'
 
 const App = () => {
   return (
@@ -20,9 +21,13 @@ const App = () => {
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/youtube" component={YouHome} />
+
+        <Route exact path="/youtube/:id" component={YouDetail} />
+
         <Route exact path="/post" component={PostScreen} />
         <Route exact path="/youPost" component={YouPost} />
         <Route exact path="/myPost" component={MyPost} />
+
         <Route exact path="/:id" component={DetailPage} />
       </Switch>
     </BrowserRouter>

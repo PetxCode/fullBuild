@@ -96,6 +96,13 @@ const makePost = async() => {
     view,
     time: firebase.firestore.FieldValue.serverTimestamp()
   })
+  setName("")
+  setTitle("")
+  setDescription("")
+  setView("")
+
+  console.log("File has been uploaded..!")
+  window.location.reload()
 }
 
 
