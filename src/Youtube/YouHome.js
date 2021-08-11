@@ -7,7 +7,8 @@ import vid from "./videos/1.mp4"
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import ReadMoreReact from 'read-more-react';
 import app from '../base';
-// import StringParser from 'react-simple-read-more';
+import moment from "moment"
+import { Link } from 'react-router-dom';
 
 
 
@@ -32,8 +33,9 @@ const YouHome = () => {
   return (
     <Container>
     {
-      myFiles.map(({video,id, title, avatar, description, image, name, time, view}) => (
+      myFiles.map(({video, id, title, avatar, description, image, name, time, view}) => (
         <Wrapper key={id} >
+        <Link to={`/youtube/${id}`} >
         <Media>
           <Image src={image} />
           <Video src={video} 
@@ -43,6 +45,7 @@ const YouHome = () => {
           muted
           />
         </Media>
+        </Link>
         <Content>
           <ProfilePix src={avatar}/>
           <ProfileContent>
@@ -68,7 +71,8 @@ const YouHome = () => {
                 <Row>
                   <FiberManualRecordIcon />
                 </Row>
-                <Row>Time</Row>
+                <Row>{moment(time.toDate()).fromNow()}</Row>
+               
               </DescriptionRow>
             </DescriptionContainer>
           </ProfileContent>
