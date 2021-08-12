@@ -116,8 +116,12 @@ const makePost = async() => {
           onChange={uploadProfile}
         />
        {
-         showP === 0 || showP === 100 ? null :  <CircularProgress color="secondary" />
+         showP === 0 || showP === 100 ? null :  <LoaderHolder>
+         <LoaderIcon color="secondary" />
+         <p>{showP}%</p>
+        </LoaderHolder>
        }
+       {showP === 100 ? <h4>completed</h4> : null }
         </ProfileWrapper>
         <ProfileWrapper>
         <Image 
@@ -126,9 +130,14 @@ const makePost = async() => {
           onChange={uploadImage} 
           />
           {
-         showI === 0 || showI === 100 ? null :  <CircularProgress />
+         showI === 0 || showI === 100 ? null :  <LoaderHolder>
+         <LoaderIcon color="secondary" />
+         <p>{showI}%</p>
+        </LoaderHolder>
        }
+       {showI === 100 ? <h4>completed</h4> : null }
           </ProfileWrapper>
+
           <ProfileWrapper>
         <Video 
           placeholder="Profile Pix"
@@ -136,8 +145,14 @@ const makePost = async() => {
           onChange={uploadVideo} 
           />
           {
-         showV === 0 || showV === 100 ? null :  <CircularProgress color="secondary" />
+         showV === 0 || showV === 100 ? null :  <LoaderHolder>
+         <LoaderIcon color="secondary" />
+         <p>{showV}%</p>
+        </LoaderHolder>
        }
+
+        {showV === 100 ? <h4>completed</h4> : null }
+
           </ProfileWrapper>
         <Name  
           placeholder="Enter Name"
@@ -172,6 +187,29 @@ const makePost = async() => {
 }
 
 export default MyPost
+
+const LoaderHolder = styled.div`
+ position: relative;
+           width:40px; 
+           height:40px;
+p{
+  position: absolute;
+           top: 0px;
+           display: flex;
+           width: 100%;
+           height: 100%;
+           justify-content:center;
+           align-items:center;
+           font-weight: bold;
+           font-size: 10px;
+}
+`
+
+const LoaderIcon = styled(CircularProgress)`
+width:40px; 
+           height:40px; 
+           font-size:40px
+`
 
 const ProfileWrapper = styled.div`
   display: flex;
